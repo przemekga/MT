@@ -1,0 +1,24 @@
+{
+  "name": "mt",
+  "version": "0.0.1",
+  "description": "Music Trainer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/przemekga/MT.git"
+  },
+  "author": "Pemol",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/przemekga/MT/issues"
+  },
+  "homepage": "https://github.com/przemekga/MT#readme",
+  "devDependencies": {
+    "browser-sync": "^2.17.3",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.2"
+  }
+}

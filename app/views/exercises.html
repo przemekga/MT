@@ -1,0 +1,58 @@
+<div class="row addNew">
+    <div class="col-xs-3">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="New group name" ng-model="exList.exercise.groupName">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="exList.save()"><span class="glyphicon glyphicon-ok-sign"></span></button>
+            </span>
+        </div><!-- /input-group -->
+    </div>
+</div>
+
+<div class="row">
+<div class="col-xs-8 col-lg-8">
+    <div class="panel panel-default" ng-repeat="exGroup in exList.exerciseList track by $index">
+        <!-- Default panel contents -->
+        <div class="panel-heading">{{exGroup.groupName}}</div>
+
+        <!-- Table -->
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Exercise</th>
+                <th>Duration</th>
+                <th>BPM</th>
+                <th><span class="glyphicon glyphicon-plus"></span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in exGroup.exercises">
+                <td>{{item.exid}}</td>
+                <td>{{item.exerciseName}}</td>
+                <td>{{item.duration | date}}</td>
+                <td>{{item.bpm}}</td>
+                <th><span class="glyphicon glyphicon-play"></span></th>
+            </tr>
+            </tbody>
+        </table>
+        <div class="input-group add-exercise">
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" type="button">Add</button>
+                    </span>
+            <input type="text" class="form-control ex-data-input" placeholder="Exercise name">
+            <input type="text" class="form-control ex-data-input" placeholder="Duration">
+            <input type="text" class="form-control ex-data-input" placeholder="BPM">
+        </div><!-- /input-group -->
+
+    </div>
+</div>
+<div class="col-xs-4 col-lg-4">
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+        </div>
+
+    </div>
+</div>
+</div>

@@ -1,0 +1,13 @@
+.counter {
+  width: 30%;
+  text-align: center;
+  margin: 0 auto;
+  font-family: "Brandon";
+  font-size: 2em; }
+
+.presetRow {
+  margin-bottom: 1em; }
+  .presetRow .presetDiv {
+    text-align: center; }
+    .presetRow .presetDiv .preset {
+      width: 90%; }
