@@ -12,10 +12,11 @@
     function ExerciseListController(ExerciseListService) {
         var vm = this;
         vm.exerciseList = ExerciseListService.exerciseList;
+        vm.newExercise = '';
 
         vm.exercise = {
             id: 0,
-            groupName: "",
+            groupName: vm.newExercise,
             exercises:
                 [
                     {exid: 1, completed: false, exerciseName: 'Legato', duration: '10:00', bpm: 120},
@@ -30,12 +31,12 @@
         };
 
         vm.save = function () {
+            vm.exercise.groupName = vm.newExercise;
             ExerciseListService.save( vm.exercise );
-            console.log(ExerciseListService.exerciseList);
+            console.log(vm.exerciseList);
         };
 
         console.log(vm.exercise);
 
-        return vm;
     }
 })();
