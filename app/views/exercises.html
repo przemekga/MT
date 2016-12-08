@@ -1,7 +1,7 @@
 <div class="row addNew">
     <div class="col-xs-3">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="New group name" ng-model="exList.newExercise">
+            <input type="text" class="form-control" placeholder="New group name" ng-model="exList.exerciseGroup.groupName">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button" ng-click="exList.save()"><span class="glyphicon glyphicon-ok-sign"></span></button>
             </span>
@@ -11,7 +11,7 @@
 
 <div class="row">
 <div class="col-xs-8 col-lg-8">
-    <div class="panel panel-default" ng-repeat="exGroup in exList.exerciseList track by $index">
+    <div class="panel panel-default" ng-repeat="exGroup in exList.exerciseGroupList track by $index">
         <!-- Default panel contents -->
         <div class="panel-heading">{{exGroup.groupName}}</div>
 
@@ -28,7 +28,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="item in exGroup.exercises">
-                <td>{{item.exid}}</td>
+                <td>{{item.exId}}</td>
                 <td>{{item.exerciseName}}</td>
                 <td>{{item.duration | date}}</td>
                 <td>{{item.bpm}}</td>
@@ -38,11 +38,11 @@
         </table>
         <div class="input-group add-exercise">
                     <span class="input-group-btn">
-                        <button class="btn btn-success" type="button">Add</button>
+                        <button class="btn btn-success" type="button" ng-click="exList.addExercise($index)">Add</button>
                     </span>
-            <input type="text" class="form-control ex-data-input" placeholder="Exercise name">
-            <input type="text" class="form-control ex-data-input" placeholder="Duration">
-            <input type="text" class="form-control ex-data-input" placeholder="BPM">
+            <input type="text" class="form-control ex-data-input" placeholder="Exercise name" ng-model="exList.exercise.exerciseName">
+            <input type="text" class="form-control ex-data-input" placeholder="Duration" ng-model="exList.exercise.duration">
+            <input type="text" class="form-control ex-data-input" placeholder="BPM" ng-model="exList.exercise.bpm">
         </div><!-- /input-group -->
 
     </div>
