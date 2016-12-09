@@ -25,6 +25,8 @@
             exId: 0,
             completed: false,
             exerciseName: '',
+            minutes: '',
+            seconds: '',
             duration: '',
             bpm: ''
         };
@@ -38,7 +40,7 @@
             var temp = vm.exercise;
             temp.group = index;
             ExerciseListService.addExercise(angular.copy(temp));
-            console.log(vm.exerciseList);
+            console.log(vm.exerciseGroupList);
         };
 
         console.log(vm.exerciseGroup);
