@@ -8,23 +8,18 @@
 .add-exercise {
   border: 1px solid #f5f5f5;
   background-color: #f5f5f5;
+  text-align: center;
 
-  .ex-data-input {
-    border: 1px solid #d3d3d3;
-    width: 30% !important;
-    margin-right: 1em;
-  }
-
-  .time-input {
-    width: 10%!important;
-    margin-right: 1em;
-  }
-  .bpm {
-    width: 10%!important;
-    margin-right: 1em;
+  button {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    background-color: rgba(51, 122, 183, 0.83);
   }
 }
-
-.bpm-cell {
+.exercise-cell {
   border: 0;
+}
+.time {
+  width: 3em;
+  text-align: center;
 }

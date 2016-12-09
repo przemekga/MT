@@ -5845,20 +5845,19 @@ button.close {
 
 .add-exercise {
   border: 1px solid #f5f5f5;
-  background-color: #f5f5f5; }
-  .add-exercise .ex-data-input {
-    border: 1px solid #d3d3d3;
-    width: 30% !important;
-    margin-right: 1em; }
-  .add-exercise .time-input {
-    width: 10% !important;
-    margin-right: 1em; }
-  .add-exercise .bpm {
-    width: 10% !important;
-    margin-right: 1em; }
+  background-color: #f5f5f5;
+  text-align: center; }
+  .add-exercise button {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    background-color: rgba(51, 122, 183, 0.83); }
 
-.bpm-cell {
+.exercise-cell {
   border: 0; }
+
+.time {
+  width: 3em;
+  text-align: center; }
 
 nav {
   margin-bottom: 5rem !important; }

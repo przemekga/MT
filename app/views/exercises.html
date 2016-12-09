@@ -30,25 +30,24 @@
             <tr ng-repeat="item in exGroup.exercises">
                 <!--<td>{{item.exId}}</td>-->
                 <td>{{item.exId}}</td>
-                <td>{{item.exerciseName}}</td>
-                <td>{{item.duration | secondsToDateTime | date:'mm:ss'}}</td>
-                <!--<td>{{item.bpm}}</td>-->
                 <td>
-                    <input type="number" ng-model="item.bpm" class="bpm-cell">
+                    <input type="text" ng-model="item.exerciseName" class="exercise-cell">
+                </td>
+                <!--<td>{{item.duration | secondsToDateTime | date:'mm:ss'}}</td>-->
+                <td>
+                    <input type="number" ng-model="item.minutes" class="exercise-cell time">
+                    <span>:</span>
+                    <input type="number" ng-model="item.seconds" class="exercise-cell time">
+                </td>
+                <td>
+                    <input type="number" ng-model="item.bpm" class="exercise-cell">
                 </td>
                 <th><span class="glyphicon glyphicon-play"></span></th>
             </tr>
             </tbody>
         </table>
-        <div class="input-group add-exercise">
-
-            <input type="text" class="form-control ex-data-input" placeholder="Exercise name" ng-model="exList.exercise.exerciseName">
-            <input type="number" class="form-control time-input" placeholder="Min" ng-model="exList.exercise.minutes">
-            <input type="number" class="form-control time-input" placeholder="Sec" ng-model="exList.exercise.seconds">
-            <input type="number" class="form-control ex-data-input bpm" placeholder="BPM" ng-model="exList.exercise.bpm">
-            <span class="input-group-btn">
-                <button class="btn btn-success" type="button" ng-click="exList.addExercise($index)">Add</button>
-            </span>
+        <div class="add-exercise">
+            <button class="btn btn-primary" type="button" ng-click="exList.addExercise($index)">Add new exercise</button>
         </div><!-- /input-group -->
 
     </div>
