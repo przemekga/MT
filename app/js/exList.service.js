@@ -35,6 +35,14 @@
             return exerciseService.newId;
         };
 
+        exerciseService.convertToSeconds = function (exercise) {
+            var minutes = parseInt(exercise.minutes);
+            var seconds = parseInt(exercise.seconds);
+            exerciseService.durationSeconds = minutes * 60 + seconds;
+
+            return exerciseService.durationSeconds;
+        };
+
         exerciseService.getNewExId = function (exercise) {
             var maxId = exerciseService.exerciseGroupList[exercise.group].exercises.length;
             exerciseService.newExId = maxId + 1;
@@ -49,14 +57,16 @@
         exerciseService.addExercise = function (exercise) {
             exercise.exId = exerciseService.getNewExId(exercise);
             exerciseService.exerciseGroupList[exercise.group].exercises.push(exercise);
-            // exerciseService.exerciseGroupList.exercises.push(exercise);
+            exercise.duration = exerciseService.convertToSeconds(exercise);
         };
+
+
 
         return exerciseService;
     }
 })();
-
-
+//
+//
 // {
 //     id: 1,
 //     groupName: "Group 1",
