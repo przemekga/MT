@@ -6,10 +6,10 @@
 
     angular
         .module('app')
-        .controller("ExerciseListController", ['ExerciseListService', ExerciseListController]);
+        .controller("ExerciseListController", ['ExerciseListService', '$interval', '$timeout', ExerciseListController]);
 
 
-    function ExerciseListController(ExerciseListService) {
+    function ExerciseListController(ExerciseListService, $interval, $timeout) {
         var vm = this;
         vm.exerciseGroupList = ExerciseListService.exerciseGroupList;
         vm.exerciseList = ExerciseListService.exerciseList;
@@ -41,6 +41,11 @@
             temp.group = index;
             ExerciseListService.addExercise(angular.copy(temp));
             console.log(vm.exerciseGroupList);
+        };
+
+        vm.play = function (bpm, item) {
+            ExerciseListService.metronome(bpm, item);
+            ExerciseListService.clickStop(item.duration);
         };
 
         console.log(vm.exerciseGroup);

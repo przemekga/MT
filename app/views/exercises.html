@@ -42,7 +42,7 @@
                 <td>
                     <input type="number" ng-model="item.bpm" class="exercise-cell">
                 </td>
-                <th><span class="glyphicon glyphicon-play"></span></th>
+                <th><span class="glyphicon glyphicon-play" ng-click="exList.play(item.bpm, item)"></span></th>
             </tr>
             </tbody>
         </table>
