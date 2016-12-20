@@ -1,5 +1,5 @@
 <div class="row addNew">
-    <div class="col-xs-3">
+    <div class="col-xs-2">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="New group name" ng-model="exList.exerciseGroup.groupName">
             <span class="input-group-btn">
@@ -10,7 +10,7 @@
 </div>
 
 <div class="row">
-<div class="col-xs-8 col-lg-8">
+<div class="col-xs-6 col-lg-6">
     <div class="panel panel-default" ng-repeat="exGroup in exList.exerciseGroupList track by $index">
         <!-- Default panel contents -->
         <div class="panel-heading">{{exGroup.groupName}}</div>
@@ -26,8 +26,8 @@
                 <th><span class="glyphicon glyphicon-plus"></span></th>
             </tr>
             </thead>
-            <tbody>
-            <tr ng-repeat="item in exGroup.exercises">
+            <tbody class="exercises-panel">
+            <tr ng-repeat="item in exGroup.exercises" ng-click="exList.showDetails(item)">
                 <!--<td>{{item.exId}}</td>-->
                 <td>{{item.exId}}</td>
                 <td>
@@ -35,12 +35,14 @@
                 </td>
                 <!--<td>{{item.duration | secondsToDateTime | date:'mm:ss'}}</td>-->
                 <td>
-                    <input type="number" ng-model="item.minutes" class="exercise-cell time">
+                    <input type="number" ng-model="item.minutes" class="exercise-cell time left" ng-minlength="1" ng-maxlength="3"
+                           min="0" max="999">
                     <span>:</span>
-                    <input type="number" ng-model="item.seconds" class="exercise-cell time">
+                    <input type="number" ng-model="item.seconds" class="exercise-cell time right" ng-minlength="1" ng-maxlength="2"
+                           min="0" max="60">
                 </td>
                 <td>
-                    <input type="number" ng-model="item.bpm" class="exercise-cell">
+                    <input type="number" ng-model="item.bpm" class="exercise-cell bpm">
                 </td>
                 <th><span class="glyphicon glyphicon-play" ng-click="exList.play(item.bpm, item)"></span></th>
             </tr>
@@ -52,12 +54,15 @@
 
     </div>
 </div>
-<div class="col-xs-4 col-lg-4">
+<div class="col-xs-6 col-lg-6">
     <div class="panel panel-default">
         <div class="panel-body">
-
+            <h1>{{exList.preview.name}}</h1>
+            <div class="tabs">
+                <img ng-src="{{exList.preview.tab}}" alt="">
+            </div>
+            <input type="file" class="btn btn-default">
         </div>
-
     </div>
 </div>
 </div>

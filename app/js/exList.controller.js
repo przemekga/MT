@@ -6,10 +6,10 @@
 
     angular
         .module('app')
-        .controller("ExerciseListController", ['ExerciseListService', '$interval', '$timeout', ExerciseListController]);
+        .controller("ExerciseListController", ['ExerciseListService', ExerciseListController]);
 
 
-    function ExerciseListController(ExerciseListService, $interval, $timeout) {
+    function ExerciseListController(ExerciseListService) {
         var vm = this;
         vm.exerciseGroupList = ExerciseListService.exerciseGroupList;
         vm.exerciseList = ExerciseListService.exerciseList;
@@ -28,7 +28,18 @@
             minutes: '',
             seconds: '',
             duration: '',
-            bpm: ''
+            bpm: '',
+            tab: ''
+        };
+
+        vm.preview = {
+            name: '',
+            tab: ''
+        };
+
+        vm.showDetails = function (item) {
+            vm.preview.name = item.exerciseName;
+            vm.preview.tab = item.tab;
         };
 
         vm.save = function () {
