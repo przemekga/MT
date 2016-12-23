@@ -29,7 +29,9 @@
             seconds: '',
             duration: '',
             bpm: '',
-            tab: ''
+            tab: '',
+            isPlaying: false,
+            isPaused: false
         };
 
         vm.preview = {
@@ -54,10 +56,27 @@
             console.log(vm.exerciseGroupList);
         };
 
+        vm.isPlaying = false;
+
         vm.play = function (bpm, item) {
+            item.isPlaying = true;
             ExerciseListService.metronome(bpm, item);
-            ExerciseListService.clickStop(item.duration);
+            ExerciseListService.durationCountdown(item);
+            ExerciseListService.clickStop(item);
         };
+
+        vm.pause = function (item) {
+            item.isPlaying = false;
+            ExerciseListService.durationCountdown(item);
+        };
+
+        vm.stop = function (item) { // TODO funkcja stop
+            ExerciseListService.stopIntervals();
+            item.duration = ExerciseListService.convertToMiliSeconds(item);
+            item.isPlaying = false;
+        };
+
+
 
         console.log(vm.exerciseGroup);
 

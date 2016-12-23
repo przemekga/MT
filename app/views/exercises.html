@@ -23,12 +23,11 @@
                 <th>Exercise</th>
                 <th>Duration</th>
                 <th>BPM</th>
-                <th><span class="glyphicon glyphicon-plus"></span></th>
+                <th></th>
             </tr>
             </thead>
             <tbody class="exercises-panel">
             <tr ng-repeat="item in exGroup.exercises" ng-click="exList.showDetails(item)">
-                <!--<td>{{item.exId}}</td>-->
                 <td>{{item.exId}}</td>
                 <td>
                     <input type="text" ng-model="item.exerciseName" class="exercise-cell">
@@ -44,7 +43,11 @@
                 <td>
                     <input type="number" ng-model="item.bpm" class="exercise-cell bpm">
                 </td>
-                <th><span class="glyphicon glyphicon-play" ng-click="exList.play(item.bpm, item)"></span></th>
+                <th>
+                    <span class="glyphicon glyphicon-play" ng-show="!item.isPlaying" ng-click="exList.play(item.bpm, item)"></span>
+                    <span class="glyphicon glyphicon-pause" ng-show="item.isPlaying" ng-click="exList.pause(item)"></span>
+                    <span class="glyphicon glyphicon-stop" ng-click="exList.stop(item)"></span>
+                </th>
             </tr>
             </tbody>
         </table>

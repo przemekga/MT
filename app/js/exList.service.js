@@ -23,17 +23,19 @@
                         completed: false,
                         exerciseName: 'Rasgueo',
                         duration: '',
-                        minutes: 5,
-                        seconds: 0,
-                        bpm: 45,
-                        tab: './tabs/tab.jpg'
+                        minutes: 0,
+                        seconds: 4,
+                        bpm: 60,
+                        tab: './tabs/tab.jpg',
+                        isPlaying: false,
+                        isPaused: false
                     },
-                    {exId: 2, completed: false, exerciseName: 'Picado', duration: '', minutes: 5, seconds: 0, bpm: 60, tab: './tabs/tab2.jpg'},
-                    {exId: 3, completed: false, exerciseName: 'Trill', duration: '5:00', bpm: 90, tab: ''},
-                    {exId: 4, completed: false, exerciseName: 'Scales', duration: '13:00', bpm: 150, tab: ''},
-                    {exId: 5, completed: false, exerciseName: '4 Note per String', duration: '10:00', bpm: 140, tab: ''},
-                    {exId: 6, completed: false, exerciseName: 'Arpeggios', duration: '24:00', bpm: 170, tab: ''},
-                    {exId: 7, completed: false, exerciseName: 'Tapping', duration: '10:00', bpm: 180, tab: ''}
+                    {exId: 2, completed: false, exerciseName: 'Picado', duration: '', minutes: 5, seconds: 0, bpm: 60, tab: './tabs/tab2.jpg', isPlaying: false},
+                    {exId: 3, completed: false, exerciseName: 'Trill', duration: '5:00', bpm: 90, tab: '', isPlaying: false},
+                    {exId: 4, completed: false, exerciseName: 'Scales', duration: '13:00', bpm: 150, tab: '', isPlaying: false},
+                    {exId: 5, completed: false, exerciseName: '4 Note per String', duration: '10:00', bpm: 140, tab: '', isPlaying: false},
+                    {exId: 6, completed: false, exerciseName: 'Arpeggios', duration: '24:00', bpm: 170, tab: '', isPlaying: false},
+                    {exId: 7, completed: false, exerciseName: 'Tapping', duration: '10:00', bpm: 180, tab: '', isPlaying: false}
 
                 ]
             }
@@ -67,7 +69,6 @@
         exerciseService.addExercise = function (exercise) {
             exercise.exId = exerciseService.getNewExId(exercise);
             exerciseService.exerciseGroupList[exercise.group].exercises.push(exercise);
-            //exercise.duration = exerciseService.convertToSeconds(exercise);
         };
 
         exerciseService.tick = function (isPlaying) {
@@ -80,21 +81,43 @@
             }
         };
 
-        exerciseService.clickStop = function (duration) {
-            $timeout(function () {$interval.cancel(exerciseService.clicking)}, duration);
-
+        exerciseService.clickStop = function (item) {
+            $timeout(function () {
+                $interval.cancel(exerciseService.clicking);
+                item.isPlaying = false;
+            }, item.duration);
         };
 
+
         exerciseService.metronome = function (bpm, exercise) {
-            exercise.duration = exerciseService.convertToMiliSeconds(exercise);
+            if(!exercise.isPaused) {
+                exercise.duration = exerciseService.convertToMiliSeconds(exercise);
+            }
+
             var interval = 60000 / bpm;
 
             exerciseService.clicking = $interval(function () {
                 exerciseService.tick();
             }, interval);
-
         };
 
+        exerciseService.stopIntervals = function () {
+            $interval.cancel(exerciseService.clicking);
+            $interval.cancel(exerciseService.durCtd);
+        };
+
+        exerciseService.durationCountdown = function (exercise) {
+            if(exercise.isPlaying) {
+                exerciseService.durCtd = $interval(function () {
+                    exercise.duration = exercise.duration - 1000;
+                    if(exercise.duration === 0){$interval.cancel(exerciseService.durCtd);}
+                }, 1000);
+                exercise.isPaused = false;
+            } else {
+                exerciseService.stopIntervals();
+                exercise.isPaused = true;
+            }
+        };
 
         return exerciseService;
     }
