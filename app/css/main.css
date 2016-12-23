@@ -5852,12 +5852,27 @@ button.close {
     margin-bottom: 0.5em;
     background-color: rgba(51, 122, 183, 0.83); }
 
-.exercise-cell {
-  border: 0; }
-
-.time {
-  width: 3em;
-  text-align: center; }
+.exercises-panel {
+  cursor: pointer; }
+  .exercises-panel .exercise-cell {
+    border: 0;
+    cursor: default;
+    width: 100%; }
+    .exercises-panel .exercise-cell:focus {
+      cursor: text; }
+  .exercises-panel .time {
+    width: 1.3em;
+    text-align: center; }
+  .exercises-panel .time[type=number]::-webkit-inner-spin-button,
+  .exercises-panel .time[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0; }
+  .exercises-panel .left {
+    text-align: right; }
+  .exercises-panel .right {
+    text-align: left; }
+  .exercises-panel .bpm {
+    width: 2.8em; }
 
 nav {
   margin-bottom: 5rem !important; }

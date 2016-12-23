@@ -16,10 +16,37 @@
     background-color: rgba(51, 122, 183, 0.83);
   }
 }
-.exercise-cell {
-  border: 0;
-}
-.time {
-  width: 3em;
-  text-align: center;
+.exercises-panel {
+  cursor: pointer;
+
+  .exercise-cell {
+    border: 0;
+    cursor: default;
+    width: 100%;
+
+    &:focus {
+      cursor: text;
+    }
+  }
+
+  .time {
+    width: 1.3em;
+    text-align: center;
+  }
+  .time[type=number]::-webkit-inner-spin-button,
+  .time[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .left {
+    text-align: right;
+  }
+  .right {
+    text-align: left;
+  }
+
+  .bpm {
+    width: 2.8em;
+  }
 }

@@ -28,7 +28,20 @@
             minutes: '',
             seconds: '',
             duration: '',
-            bpm: ''
+            bpm: '',
+            tab: '',
+            isPlaying: false,
+            isPaused: false
+        };
+
+        vm.preview = {
+            name: '',
+            tab: ''
+        };
+
+        vm.showDetails = function (item) {
+            vm.preview.name = item.exerciseName;
+            vm.preview.tab = item.tab;
         };
 
         vm.save = function () {
@@ -42,6 +55,28 @@
             ExerciseListService.addExercise(angular.copy(temp));
             console.log(vm.exerciseGroupList);
         };
+
+        vm.isPlaying = false;
+
+        vm.play = function (bpm, item) {
+            item.isPlaying = true;
+            ExerciseListService.metronome(bpm, item);
+            ExerciseListService.durationCountdown(item);
+            ExerciseListService.clickStop(item);
+        };
+
+        vm.pause = function (item) {
+            item.isPlaying = false;
+            ExerciseListService.durationCountdown(item);
+        };
+
+        vm.stop = function (item) { // TODO funkcja stop
+            ExerciseListService.stopIntervals();
+            item.duration = ExerciseListService.convertToMiliSeconds(item);
+            item.isPlaying = false;
+        };
+
+
 
         console.log(vm.exerciseGroup);
 
