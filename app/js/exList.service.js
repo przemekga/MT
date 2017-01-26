@@ -16,6 +16,7 @@
             {
                 id: 1,
                 groupName: "Flamenco",
+                exerciseGroupTotalTime: '0',
                 exercises:
                 [
                     {
@@ -31,11 +32,11 @@
                         isPaused: false
                     },
                     {exId: 2, completed: false, exerciseName: 'Picado', duration: '', minutes: 5, seconds: 0, bpm: 60, tab: './tabs/tab2.jpg', isPlaying: false},
-                    {exId: 3, completed: false, exerciseName: 'Trill', duration: '5:00', bpm: 90, tab: '', isPlaying: false},
-                    {exId: 4, completed: false, exerciseName: 'Scales', duration: '13:00', bpm: 150, tab: '', isPlaying: false},
-                    {exId: 5, completed: false, exerciseName: '4 Note per String', duration: '10:00', bpm: 140, tab: '', isPlaying: false},
-                    {exId: 6, completed: false, exerciseName: 'Arpeggios', duration: '24:00', bpm: 170, tab: '', isPlaying: false},
-                    {exId: 7, completed: false, exerciseName: 'Tapping', duration: '10:00', bpm: 180, tab: '', isPlaying: false}
+                    {exId: 3, completed: false, exerciseName: 'Trill', duration: '5:00', minutes: 5, seconds: 0, bpm: 90, tab: '', isPlaying: false},
+                    {exId: 4, completed: false, exerciseName: 'Scales', duration: '13:00', minutes: 5, seconds: 0, bpm: 150, tab: '', isPlaying: false},
+                    {exId: 5, completed: false, exerciseName: '4 Note per String', duration: '10:00', minutes: 5, seconds: 0, bpm: 140, tab: '', isPlaying: false},
+                    {exId: 6, completed: false, exerciseName: 'Arpeggios', duration: '24:00', minutes: 5, seconds: 0, bpm: 170, tab: '', isPlaying: false},
+                    {exId: 7, completed: false, exerciseName: 'Tapping', duration: '10:00', minutes: 5, seconds: 0, bpm: 180, tab: '', isPlaying: false}
 
                 ]
             }
@@ -82,9 +83,10 @@
         };
 
         exerciseService.clickStop = function (item) {
-            $timeout(function () {
+            exerciseService.clickTimeout = $timeout(function () {
                 $interval.cancel(exerciseService.clicking);
                 item.isPlaying = false;
+                item.completed = true;
             }, item.duration);
         };
 
@@ -106,6 +108,10 @@
             $interval.cancel(exerciseService.durCtd);
         };
 
+        exerciseService.stopTimeout = function () {
+            $timeout.cancel(exerciseService.clickTimeout);
+        };
+
         exerciseService.durationCountdown = function (exercise) {
             if(exercise.isPlaying) {
                 exerciseService.durCtd = $interval(function () {
@@ -117,6 +123,28 @@
                 exerciseService.stopIntervals();
                 exercise.isPaused = true;
             }
+        };
+
+        exerciseService.convertNumbersToTime = function (minutes, seconds) {
+            var totalMin = minutes.reduce((a, b) => a + b, 0);
+            var totalSec = seconds.reduce((a, b) => a + b, 0);
+            if (totalSec > 59) {
+                totalMin = totalMin + Math.floor(totalSec / 60);
+                totalSec = totalSec % 60;
+            }
+            return [totalMin, totalSec];
+        };
+
+        exerciseService.makeTimeArrays = function (group) {
+            var minutes = group.exercises.map(function (exercise) {
+                return parseInt(exercise.minutes);
+            });
+
+            var seconds = group.exercises.map(function (exercise) {
+                return parseInt(exercise.seconds);
+            });
+
+            return [minutes, seconds];
         };
 
         return exerciseService;

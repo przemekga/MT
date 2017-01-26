@@ -5838,6 +5838,11 @@ button.close {
   font-weight: normal;
   font-style: normal; }
 
+.app-view {
+  margin-top: 15rem; }
+  .app-view .exGroup-total-time {
+    margin-left: 30px; }
+
 .addNew {
   margin-bottom: 2em !important;
   font-size: 1.3em;
@@ -5876,3 +5881,21 @@ button.close {
 
 nav {
   margin-bottom: 5rem !important; }
+  nav .navbar-brand,
+  nav .navbar-nav li a {
+    line-height: 100px;
+    height: 100px;
+    padding-top: 0; }
+  nav .countdown-timer {
+    margin: 0;
+    margin-left: 300px;
+    position: absolute;
+    top: 30px; }
+    nav .countdown-timer h3 {
+      margin: 0;
+      padding: 0;
+      width: 300px;
+      display: inline-block; }
+    nav .countdown-timer div {
+      display: inline-block;
+      font-size: 3rem; }

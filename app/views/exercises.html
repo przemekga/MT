@@ -13,7 +13,8 @@
 <div class="col-xs-6 col-lg-6">
     <div class="panel panel-default" ng-repeat="exGroup in exList.exerciseGroupList track by $index">
         <!-- Default panel contents -->
-        <div class="panel-heading">{{exGroup.groupName}}</div>
+        <div class="panel-heading">{{exGroup.groupName}}<span class="exGroup-total-time">{{exList.totalGroupTime(exGroup)[0]}}:{{exList.totalGroupTime(exGroup)[1]}}</span></div>
+
 
         <!-- Table -->
         <table class="table table-hover">
