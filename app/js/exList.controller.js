@@ -62,6 +62,7 @@
             ExerciseListService.metronome(bpm, item);
             ExerciseListService.durationCountdown(item);
             ExerciseListService.clickStop(item);
+
         };
 
         vm.pause = function (item) {
@@ -78,9 +79,9 @@
 
         vm.totalGroupTime = function(exercises){
             var arrs = ExerciseListService.makeTimeArrays(exercises);
+            exercises.exerciseGroupTotalTime = ExerciseListService.convertNumbersToTime(arrs[0], arrs[1]);
             return ExerciseListService.convertNumbersToTime(arrs[0], arrs[1]);
         };
-
 
         console.log(vm.exerciseGroup);
 

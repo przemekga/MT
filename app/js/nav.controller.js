@@ -13,11 +13,16 @@
         vm.exerciseGroupList = ExerciseListService.exerciseGroupList;
         vm.exerciseList = ExerciseListService.exerciseList;
 
-        vm.workoutDuration = function (exercises) {
-            var arrs = exerciseGroupList.exerciseGroupTotalTime.map(function (total) {
-               //TODO: glowny licznik, zliczanie minut i sekund z calych grup
+        vm.workoutDuration = function (exerciseGroups) {
+            var minArr = exerciseGroups.map(function (min) {
+               return min.exerciseGroupTotalTime[0];
             });
-            return ExerciseListService.convertNumbersToTime(arrs[0], arrs[1]);
+
+            var secArr = exerciseGroups.map(function (sec) {
+                return sec.exerciseGroupTotalTime[1];
+            });
+
+            return ExerciseListService.convertNumbersToTime(minArr, secArr);
         }
     }
 })();
