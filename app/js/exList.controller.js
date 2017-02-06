@@ -17,7 +17,8 @@
         vm.exerciseGroup = {
             id: 0,
             groupName: '',
-            exercises: []
+            exercises: [],
+            exerciseGroupTotalTime: ''
         };
 
         vm.exercise = {
@@ -56,13 +57,12 @@
             console.log(vm.exerciseGroupList);
         };
 
-        vm.isPlaying = false;
-
         vm.play = function (bpm, item) {
             item.isPlaying = true;
             ExerciseListService.metronome(bpm, item);
             ExerciseListService.durationCountdown(item);
             ExerciseListService.clickStop(item);
+
         };
 
         vm.pause = function (item) {
@@ -70,13 +70,18 @@
             ExerciseListService.durationCountdown(item);
         };
 
-        vm.stop = function (item) { // TODO funkcja stop
+        vm.stop = function (item) {
             ExerciseListService.stopIntervals();
+            ExerciseListService.stopTimeout();
             item.duration = ExerciseListService.convertToMiliSeconds(item);
             item.isPlaying = false;
         };
 
-
+        vm.totalGroupTime = function(exercises){
+            var arrs = ExerciseListService.makeTimeArrays(exercises);
+            exercises.exerciseGroupTotalTime = ExerciseListService.convertNumbersToTime(arrs[0], arrs[1]);
+            return ExerciseListService.convertNumbersToTime(arrs[0], arrs[1]);
+        };
 
         console.log(vm.exerciseGroup);
 
