@@ -5899,7 +5899,8 @@ button.close {
     width: 2.8em; }
 
 .exercise-tab-menu {
-  position: fixed; }
+  position: fixed;
+  top: 10%; }
 
 nav {
   margin-bottom: 5rem !important; }

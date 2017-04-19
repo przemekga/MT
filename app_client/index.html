@@ -4,18 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="css/main.css">
-    <script src="lib/jquery-3.1.1.min.js"></script>
-    <script src="lib/underscore-min.js"></script>
-    <script src="lib/bootstrap.min.js"></script>
-    <script src="lib/angular.min.js"></script>
-    <script src="lib/angular-route.min.js"></script>
-    <script src="js/app.module.js"></script>
-    <script src="js/secondsToDateTime.filter.js"></script>
-    <script src="js/exList.service.js"></script>
-    <script src="js/exList.controller.js"></script>
-    <script src="js/app.route.js"></script>
-    <script src="js/nav.service.js"></script>
-    <script src="js/nav.controller.js"></script>
+
 
 
 </head>
@@ -29,18 +18,20 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#/">Music Training Schedule</a>
+            <a class="navbar-brand" href="/">Music Training Schedule</a>
         </div>
-        <div class="countdown-timer">
-            <h3>Entire Workout duration:</h3>
-            <div>{{navctrl.workoutDuration(navctrl.exerciseGroupList)[0]}}:{{navctrl.workoutDuration(navctrl.exerciseGroupList)[1]}}</div>
-        </div>
+        <!--<div class="countdown-timer">-->
+            <!--<h3>Entire Workout duration:</h3>-->
+            <!--<div>{{navctrl.workoutDuration(navctrl.exerciseGroupList)[0]}}:{{navctrl.workoutDuration(navctrl.exerciseGroupList)[1]}}</div>-->
+        <!--</div>-->
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
+                <li ng-hide="navctrl.isLoggedIn"><a href="/login">Sign in</a></li>
+                <li ng-show="navctrl.isLoggedIn"><a href="/profile">{{ navctrl.currentUser.name }}</a></li>
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
+                        <li><a href="#/login">Action</a></li>
                         <li><a href="#">Another action</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li role="separator" class="divider"></li>
@@ -59,5 +50,21 @@
 
 </div> <!-- /container -->
 
+<script src="lib/jquery-3.1.1.min.js"></script>
+<script src="lib/bootstrap.min.js"></script>
+<script src="lib/angular.min.js"></script>
+<script src="lib/angular-route.min.js"></script>
+<script src="js/app.module.js"></script>
+<script src="js/secondsToDateTime.filter.js"></script>
+<script src="js/services/exList.service.js"></script>
+<script src="js/controllers/exList.controller.js"></script>
+<script src="js/app.route.js"></script>
+<script src="js/services/nav.service.js"></script>
+<script src="js/controllers/nav.controller.js"></script>
+<script src="js/controllers/login.controller.js"></script>
+<script src="js/controllers/profile.controller.js"></script>
+<script src="js/controllers/register.controller.js"></script>
+<script src="js/services/authentication.service.js"></script>
+<script src="js/services/data.service.js"></script>
 </body>
 </html>
