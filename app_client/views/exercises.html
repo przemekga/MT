@@ -28,7 +28,7 @@
             </tr>
             </thead>
             <tbody class="exercises-panel">
-            <tr ng-repeat="item in exGroup.exercises" ng-click="exList.showDetails(item)">
+            <tr ng-repeat="item in exGroup.exercises" ng-click="exList.showDetails(item)" ng-class="item.completed ? 'completed' : 'uncompleted'">
                 <td>{{item.exId}}</td>
                 <td>
                     <input type="text" ng-model="item.exerciseName" class="exercise-cell">
@@ -44,11 +44,15 @@
                 <td>
                     <input type="number" ng-model="item.bpm" class="exercise-cell bpm">
                 </td>
-                <th>
+                <td class="exercise-controls">
                     <span class="glyphicon glyphicon-play" ng-show="!item.isPlaying" ng-click="exList.play(item.bpm, item)"></span>
                     <span class="glyphicon glyphicon-pause" ng-show="item.isPlaying" ng-click="exList.pause(item)"></span>
                     <span class="glyphicon glyphicon-stop" ng-click="exList.stop(item)"></span>
-                </th>
+
+                </td>
+                <td>
+                    <span class="glyphicon" ng-class="item.completed ? 'glyphicon-ok' : ''"></span>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -59,11 +63,11 @@
     </div>
 </div>
 <div class="col-xs-6 col-lg-6">
-    <div class="panel panel-default">
+    <div class="panel panel-default exercise-tab-menu">
         <div class="panel-body">
             <h1>{{exList.preview.name}}</h1>
             <div class="tabs">
-                <img ng-src="{{exList.preview.tab}}" alt="">
+                <img ng-src="{{exList.preview.tab}}" alt=" ">
             </div>
             <input type="file" class="btn btn-default">
         </div>

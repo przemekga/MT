@@ -5843,6 +5843,22 @@ button.close {
   .app-view .exGroup-total-time {
     margin-left: 30px; }
 
+.completed {
+  background-color: #5cb85c;
+  color: white; }
+  .completed:hover {
+    background-color: #489048 !important; }
+    .completed:hover input {
+      background-color: #489048;
+      color: white; }
+  .completed input {
+    background-color: #5cb85c;
+    color: white; }
+
+.uncompleted {
+  background-color: white;
+  color: black; }
+
 .addNew {
   margin-bottom: 2em !important;
   font-size: 1.3em;
@@ -5859,6 +5875,9 @@ button.close {
 
 .exercises-panel {
   cursor: pointer; }
+  .exercises-panel .exercise-controls .glyphicon-ok {
+    float: right;
+    margin-right: 20px; }
   .exercises-panel .exercise-cell {
     border: 0;
     cursor: default;
@@ -5878,6 +5897,10 @@ button.close {
     text-align: left; }
   .exercises-panel .bpm {
     width: 2.8em; }
+
+.exercise-tab-menu {
+  position: fixed;
+  top: 10%; }
 
 nav {
   margin-bottom: 5rem !important; }

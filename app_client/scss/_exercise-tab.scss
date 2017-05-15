@@ -6,6 +6,30 @@
   }
 }
 
+.completed {
+  background-color: #5cb85c;
+  color: white;
+
+  &:hover {
+    background-color: #489048!important;
+
+    input {
+      background-color: #489048;
+      color: white;
+    }
+  }
+
+  input {
+    background-color: #5cb85c;
+    color: white;
+  }
+}
+
+.uncompleted {
+  background-color: white;
+  color: black;
+}
+
 .addNew {
   margin-bottom: 2em !important;
   //height: 3em;
@@ -26,6 +50,14 @@
 }
 .exercises-panel {
   cursor: pointer;
+
+  .exercise-controls {
+
+    .glyphicon-ok {
+      float: right;
+      margin-right: 20px;
+    }
+  }
 
   .exercise-cell {
     border: 0;
@@ -57,4 +89,9 @@
   .bpm {
     width: 2.8em;
   }
+}
+
+.exercise-tab-menu {
+  position: fixed;
+  top: 10%;
 }
